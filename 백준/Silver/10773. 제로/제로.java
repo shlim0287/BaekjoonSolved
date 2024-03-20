@@ -1,22 +1,26 @@
 import java.util.*;
 import java.io.*;
+
 public class Main{
-    public static void main(String[] args){
-        Scanner sc=new Scanner(System.in);
-        int num=sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        Stack<Integer> stack=new Stack<>();
+        int num=Integer.parseInt(br.readLine());
         int sum=0;
-        Stack<Integer> st=new Stack<>();
+
         for(int i=0;i<num;i++){
-            int stNum=sc.nextInt();
-            if(stNum==0){
-                st.pop();
+            int input = Integer.parseInt(br.readLine());
+            if(input!=0){
+                stack.push(input);
             }else{
-                st.push(stNum);
+                stack.pop();
             }
         }
-        for(int a: st){
+
+        for (Integer a : stack) {
             sum+=a;
         }
         System.out.println(sum);
+        
     }
 }
