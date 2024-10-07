@@ -1,18 +1,28 @@
 import java.util.*;
-import java.io.*;
-public class Main{
-    public static void main(String[] args)throws Exception{
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        String s=br.readLine();
-        String [] str=s.split("");
-        int [] arr=new int [str.length];
-        for(int i=0;i<str.length;i++){
-            arr[i]=Integer.parseInt(str[i]);
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        String str = sc.nextLine();
+        int[] arr = new int[str.length()];
+        for (int i = 0; i < str.length(); i++) {
+            arr[i] = Integer.parseInt(str.substring(i, i+1));
         }
-        Arrays.sort(arr);
-        for(int i=arr.length-1;i>=0;i--){
+        for (int i = 0; i < str.length(); i++) {
+            int max = i;
+            for (int j = i+1; j < str.length(); j++) {
+                if (arr[j] > arr[max]) {
+                    max = j;
+                }
+            }
+            if (arr[i] < arr[max]) {
+                int temp = arr[i];
+                arr[i] = arr[max];
+                arr[max] = temp;
+            }
+        }
+        for (int i = 0; i < str.length(); i++) {
             System.out.print(arr[i]);
         }
-        
     }
 }
