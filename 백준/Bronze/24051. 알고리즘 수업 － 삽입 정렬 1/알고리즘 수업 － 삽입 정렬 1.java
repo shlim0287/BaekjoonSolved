@@ -1,47 +1,49 @@
 import java.util.*;
 import java.io.*;
 public class Main{
-    static int n=0;
-    static int k=0;
-    static int[] a;
     public static void main(String[] args)throws IOException{
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st=new StringTokenizer(br.readLine());
-       
-        n=Integer.parseInt(st.nextToken());
-        k=Integer.parseInt(st.nextToken());
-        a=new int [n];
-        st=new StringTokenizer(br.readLine());
-        for(int i=0;i<n;i++){
-            a[i]=Integer.parseInt(st.nextToken());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        int n=Integer.parseInt(st.nextToken());
+        int k=Integer.parseInt(st.nextToken());
+        int [] arr = new int [n];
+        
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
         }
         
-        int result=findK(n,k,a);
-        
-        System.out.println(result);
-    }
-    public static int findK(int n,int k, int [] a){
-        int saveCount=0;
-        for(int i=1;i<n;i++){
-            int loc=i-1;
-            int newItem=a[i];
+        int count=0;
+        boolean found=false;
+        for(int i=1;i<arr.length;i++){
+            int current=arr[i];
+            int tobe=i-1;
             
-            while(loc>=0 && newItem<a[loc]){
-                a[loc+1]=a[loc];
-                loc--;
-                saveCount++;
-                if(saveCount==k){
-                    return a[loc+1];
+            while(tobe>=0 && arr[tobe]>current){
+                arr[tobe+1]=arr[tobe];
+                count++;
+                
+                if(count==k){
+                    System.out.println(arr[tobe]);
+                    found=true;
+                    return;
                 }
+                
+                tobe--;
             }
-            if(loc+1!=i){
-                a[loc+1]=newItem;
-                saveCount++;
-                if(saveCount==k){
-                    return newItem;
+            if(tobe+1!=i){
+              arr[tobe+1]=current;
+              count++;
+                if(count==k){
+                    System.out.println(arr[tobe]);
+                    found=true;
+                    return;
                 }
-            }
+            }      
+        }if(!found){
+            System.out.println(-1);
         }
-        return -1;
+        
     }
 }
