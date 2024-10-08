@@ -3,21 +3,25 @@ import java.io.*;
 public class Main{
     public static void main(String[] args)throws IOException{
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st=new StringTokenizer(br.readLine());
-        int n=Integer.parseInt(st.nextToken());
-        int k=Integer.parseInt(st.nextToken());
+        StringTokenizer st= new StringTokenizer(br.readLine());
         
-        int [] coin=new int[n];
-        for(int i=0;i<n;i++){
-            coin[i]=Integer.parseInt(br.readLine());
+        int n =Integer.parseInt(st.nextToken());
+        int k =Integer.parseInt(st.nextToken());
+        
+        int [] arr=new int [n];
+        for(int i=0;i<arr.length;i++){
+            arr[i]=Integer.parseInt(br.readLine());
         }
-        int count=0;
+
+        int count=0;          
         for(int i=n-1;i>=0;i--){
-            if(coin[i]<=k){
-                count+=(k/coin[i]);
-                k=k%coin[i];
+            if(arr[i]<=k){
+                count+=(k/arr[i]);
+                k=k%arr[i];
             }
         }
         System.out.println(count);
+        
+        
     }
 }
