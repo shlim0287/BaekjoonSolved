@@ -1,25 +1,25 @@
+// - 값이 크면 결과가 최소
 import java.util.*;
-import java.io.*;
 public class Main{
-    public static void main(String[] args)throws IOException{
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer stS=new StringTokenizer(br.readLine(),"-");
-        int result=Integer.MAX_VALUE;
-        while(stS.hasMoreTokens()){
-            int temp=0;
-            
-            StringTokenizer stP=new StringTokenizer(stS.nextToken(),"+");
-            
-            while(stP.hasMoreTokens()){
-                temp+=Integer.parseInt(stP.nextToken());
-            }
-            
-           if(result ==Integer.MAX_VALUE){
-               result=temp;
-           }else{
-               result-=temp;
-           }
+    static int answer=0;
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String ex=sc.nextLine();
+        String[] str=ex.split("-");
+        for(int i=0;i<str.length;i++){
+            int temp=mySum(str[i]);
+            if(i==0){
+                answer+=temp;
+            }else answer-=temp;
         }
-        System.out.println(result);
+        System.out.println(answer);
+    }
+    private static int mySum(String str){
+        int sum=0;
+        String[] arr=str.split("[+]");
+        for(int i=0;i<arr.length;i++){
+            sum+=Integer.parseInt(arr[i]);
+        }
+        return sum;
     }
 }
