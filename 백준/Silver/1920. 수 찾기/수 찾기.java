@@ -1,50 +1,42 @@
 import java.util.*;
 import java.io.*;
 public class Main{
-      public static int [] arrN;
-    public static void main(String[] args) throws IOException{
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        int n = Integer.parseInt(br.readLine());
-
-        StringTokenizer st=new StringTokenizer(br.readLine());
-        arrN=new int [n];
-
-        for(int i=0;i<n;i++){
-            arrN[i]=Integer.parseInt(st.nextToken());
-        }
-        Arrays.sort(arrN);
-
-        int m=Integer.parseInt(br.readLine());
-        st=new StringTokenizer(br.readLine());
-
-
-        for(int i=0;i<m;i++){
-            int num = Integer.parseInt(st.nextToken());
-            bw.write(binarySearch(num) + " ");
-            
-        }
-        br.close();
-        bw.flush();
-        bw.close();
-    }
-
-    public static int binarySearch(int num){
-        int left=0;
-        int right = arrN.length - 1;
+    public static void main(String[] args)throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
-        while(left<=right){
-            int middle=(left+right)/2;
-            int middleValue=arrN[middle];
-            
-            if(num>middleValue){
-                left=middle+1;
-            }else if(num<middleValue){
-                right=middle-1;
-            }else return 1;
-            
+        int n = Integer.parseInt(br.readLine());
+        int [] Narr=new int[n];
+        StringTokenizer st= new StringTokenizer(br.readLine());
+        for(int i=0;i<Narr.length;i++){
+             Narr[i]= Integer.parseInt(st.nextToken());
         }
-        return  0;
+        Arrays.sort(Narr); // 이진탐색을 위한 정렬
+        
+        
+        int m= Integer.parseInt(br.readLine());
+        st= new StringTokenizer(br.readLine());
+        for(int i=0;i<m;i++){
+             
+             boolean find=false;
+             int target=Integer.parseInt(st.nextToken());
+            
+            int start=0;
+            int end=Narr.length-1;
+            while(start<=end){
+                int mid=(start+end)/2;
+                int mid_value=Narr[mid];
+                if(mid_value>target){
+                    end=mid-1;
+                }else if(mid_value<target){
+                    start=mid+1;
+                }else{
+                    find=true;
+                    break;
+                }
+            }
+            if(find)System.out.println(1);
+            else System.out.println(0);
+        }
+       
     }
-
 }
