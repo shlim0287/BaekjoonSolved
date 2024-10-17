@@ -1,15 +1,13 @@
 import java.util.*;
 class Solution {
     public int solution(int[] nums) {
-        int halfNum = nums.length / 2;
-        HashSet<Integer> hash = new HashSet<>();
+        int get=nums.length/2;
+        int answer = 0;
+        HashSet<Integer> set=new HashSet<>();
         for(int i=0;i<nums.length;i++){
-            hash.add(nums[i]);
+            set.add(nums[i]);
         }
-        if(halfNum>hash.size()){
-            return hash.size();
-        } else {
-            return halfNum;
-        }
+        answer=Math.min(get,set.size());
+        return answer;
     }
 }
