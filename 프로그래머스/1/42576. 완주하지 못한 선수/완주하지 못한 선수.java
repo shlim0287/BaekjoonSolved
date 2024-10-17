@@ -1,23 +1,19 @@
 import java.util.*;
 class Solution {
     public String solution(String[] participant, String[] completion) {
-        String answer="";
+        String answer = "";
         HashMap<String,Integer> map=new HashMap<>();
-        
-        for(String player:participant){
-            map.put(player,map.getOrDefault(player,0)+1);
+        for(String p : participant){
+            map.put(p,map.getOrDefault(p,0)+1);
         }
-        for(String player:completion){
-            map.put(player,map.get(player)-1);
-        }
-        Iterator<Map.Entry<String,Integer>> iter=map.entrySet().iterator();
+        for (String c : completion) {
+            map.put(c, map.get(c) - 1);
+        } 
         
-        while(iter.hasNext()){
-            Map.Entry<String,Integer>entry =iter.next();
-            if(entry.getValue()!=0){
-                answer=entry.getKey();
-                break;
-            }
+        for(Map.Entry<String,Integer> entry : map.entrySet()){
+          if(entry.getValue() > 0){
+              answer=entry.getKey();
+          }
         }
         return answer;
     }
