@@ -1,27 +1,22 @@
 import java.util.*;
+import java.io.*;
 public class Main{
     public static void main(String[] args){
-        Scanner sc=new Scanner (System.in);
-        
-        int n= sc.nextInt();
-        int count = 0;
-        
-        while(true){
-            // n이 5이상
-            if(n%5==0){
-                count+=n/5;
-                System.out.println(count);
+        Scanner sc= new Scanner(System.in);
+        int num = sc.nextInt();
+        int result=0;
+        while(num>0){
+            if(num%5==0){
+                result+=num/5;
                 break;
+            }else{
+                num-=3;
+                result++;
             }
-            
-            n-=3;
-            count++;
-            
-            if(n<0){
-                System.out.println(-1);
-                break;
+            if(num<0){
+                result=-1;
             }
-            
         }
+        System.out.println(result);
     }
 }
