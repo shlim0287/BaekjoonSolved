@@ -1,0 +1,42 @@
+import java.util.*;
+import java.io.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int[] arr = new int[9];
+        
+        
+        for(int i = 0; i < 9; i++){
+            arr[i] = sc.nextInt();
+        }
+        
+ 
+        for(int i = 0; i < 9; i++){
+            for(int j = i + 1; j < 9; j++){
+            
+                int sum = 0;
+                List<Integer> result = new ArrayList<>();
+                
+                for(int k = 0; k < 9; k++){
+                    if(k != i && k != j){
+                        sum += arr[k];
+                        result.add(arr[k]);
+                    }
+                }
+                
+        
+                if(sum == 100){
+           
+                    Collections.sort(result);
+                    
+             
+                    for(int h : result){
+                        System.out.println(h);
+                    }
+                    return; 
+                }
+            }
+        }
+    }
+}
