@@ -1,42 +1,49 @@
 import java.util.*;
 import java.io.*;
 public class Main{
-    public static void main(String[] args)throws IOException{
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n= Integer.parseInt(br.readLine());
+        int [] arr = new int[n];
         
-        int n = Integer.parseInt(br.readLine());
-        int [] Narr=new int[n];
-        StringTokenizer st= new StringTokenizer(br.readLine());
-        for(int i=0;i<Narr.length;i++){
-             Narr[i]= Integer.parseInt(st.nextToken());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        for(int i = 0; i<arr.length;i++){
+            arr[i] = Integer.parseInt(st.nextToken());
         }
-        Arrays.sort(Narr); // 이진탐색을 위한 정렬
+        
+        Arrays.sort(arr);
+        
+        int m = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
         
         
-        int m= Integer.parseInt(br.readLine());
-        st= new StringTokenizer(br.readLine());
-        for(int i=0;i<m;i++){
-             
-             boolean find=false;
-             int target=Integer.parseInt(st.nextToken());
-            
-            int start=0;
-            int end=Narr.length-1;
-            while(start<=end){
-                int mid=(start+end)/2;
-                int mid_value=Narr[mid];
-                if(mid_value>target){
-                    end=mid-1;
-                }else if(mid_value<target){
-                    start=mid+1;
-                }else{
-                    find=true;
-                    break;
-                }
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i = 0;i<m;i++){
+            if(binary(arr,Integer.parseInt(st.nextToken())) >=0){
+                sb.append(1).append('\n');
+            }else{
+                sb.append(0).append('\n');
             }
-            if(find)System.out.println(1);
-            else System.out.println(0);
+        }   
+        System.out.println(sb);
+    }
+    private static int binary(int[] arr, int k){
+    int start = 0;
+    int end = arr.length - 1;
+
+    while(start <= end){
+        int mid = (start + end) / 2;
+
+        if(arr[mid] == k){
+            return mid;
+        }else if(arr[mid] < k){
+            start = mid + 1;
+        }else{
+            end = mid - 1;
         }
-       
+    }
+       return -1;
     }
 }
